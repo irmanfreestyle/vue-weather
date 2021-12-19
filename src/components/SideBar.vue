@@ -7,7 +7,7 @@
       <div class="caption">Current location</div>
       <div class="font-weight-bold py-4">
         <v-icon small class="white--text">mdi-map-marker-outline</v-icon>
-        Cileungsi, ID
+        {{ locationList[0].name }}
       </div>
     </section>
 
@@ -21,18 +21,20 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list-item
-        v-for="(location, index) in locationList"
-        :key="index"
-        :to="`/detail?id=${location.id}`"
-      >
-        <v-list-item-content>
-          <v-list-item-title class="white--text">
-            <v-icon left class="white--text">mdi-map-marker</v-icon>
-            {{ location.name }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+      <div class="location-items-wrapper">
+        <v-list-item
+          v-for="(location, index) in locationList"
+          :key="index"
+          :to="`/detail?id=${location.id}`"
+        >
+          <v-list-item-content>
+            <v-list-item-title class="white--text">
+              <v-icon left class="white--text">mdi-map-marker</v-icon>
+              {{ location.name }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </div>
     </section>
 
     <section class="flex-grow-1">
@@ -82,6 +84,11 @@ export default Vue.extend({
   transition: 0.5s;
   display: flex;
   flex-direction: column;
+
+  .location-items-wrapper {
+    max-height: 200px;
+    overflow-y: auto;
+  }
 }
 .closed {
   transform: translateX(-100%);

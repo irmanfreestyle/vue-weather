@@ -17,8 +17,7 @@
         @keyup="searchByCity"
         placeholder="Enter cities"
         prepend-inner-icon="search"
-        class="white mx-4 mb-3"
-        outlined
+        class="white mx-4 mb-3 py-1"
         rounded
         dense
         hide-details

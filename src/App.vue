@@ -1,6 +1,9 @@
 <template>
   <v-app>
-    <v-main class="app-wrapper grey lighten-3">
+    <v-main
+      class="app-wrapper grey lighten-3"
+      :class="sidebar ? 'hide-scroll' : ''"
+    >
         <SplashScreen v-show="showSplashScreen" />
         <SideBar/>
         <div class="content-wrapper" :class="sidebar ? 'sidebarOpen' : ''">
@@ -29,6 +32,12 @@ export default Vue.extend({
   watch: {
     $route () {
       this.showSidebar(false)
+    },
+    sidebar (val) {
+      if (val) {
+        const wrapper: any = document.querySelector('.app-wrapper')
+        wrapper.scrollTop = 0
+      }
     }
   }
 })
@@ -55,5 +64,9 @@ export default Vue.extend({
   .sidebarOpen {
     transform: translateX(70%);
   }
+}
+
+.hide-scroll {
+  overflow-y: hidden !important;
 }
 </style>

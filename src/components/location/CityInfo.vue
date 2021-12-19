@@ -81,8 +81,6 @@ export default Vue.extend({
   methods: {
     addToLocationList () {
       saveLocation(this.location, true)
-
-      console.log(window.history)
       this.$router.push('/')
     }
   }
