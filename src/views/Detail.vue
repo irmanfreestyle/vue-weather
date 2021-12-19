@@ -97,16 +97,14 @@
 </template>
 
 <script lang="ts">
-import axios from 'axios'
 
-import calculateTemperatureMixin from '@/mixins/calculateTemperature.vue'
+import calculateTemp from '@/helpers/calculateTemp'
 import openWeatherApi from '@/api'
 import { mapActions } from 'vuex'
 import moment from 'moment'
 import Vue from 'vue'
 
 export default Vue.extend({
-  mixins: [calculateTemperatureMixin],
   components: {
     HeaderSlot: () => import('@/components/slots/Header.vue'),
     DegreeTabs: () => import('@/components/DegreeTabs.vue')
@@ -115,7 +113,7 @@ export default Vue.extend({
     return {
       loading: true,
       unit: 'F',
-      location: {},
+      location: {} as any,
       detailItems: [] as any
     }
   },
@@ -140,11 +138,14 @@ export default Vue.extend({
         this.setSplashScreen(false)
       }, 1000)
     },
+    calculateTemp (tmp, unit) {
+      return calculateTemp(tmp, unit)
+    },
     setDetailItems () {
       this.detailItems = [
         {
           img: 'temperature.svg',
-          title: this.calculateTemp(this.location.main.temp, this.unit),
+          title: calculateTemp(this.location.main.temp, this.unit),
           subtitle: 'Fahrenheit'
         },
         {
