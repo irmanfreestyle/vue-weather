@@ -1,0 +1,19 @@
+$main-color: #3C6FD1;
+
+body {
+  overflow: hidden;
+  margin: 0px;
+}
+
+.main-bg {
+  background: linear-gradient(180deg, #3CD18A 0%, #3C6FD1 0.01%, #7CA9FF 100%);
+}
+.main-color {
+  color: $main-color;
+}
+.text-shadow {
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+.image-shadow {
+  filter: drop-shadow(4px 5px 4px rgba(0,0,0,0.3));
+}
